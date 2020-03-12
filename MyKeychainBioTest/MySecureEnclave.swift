@@ -12,7 +12,6 @@ let tag = "com.dave.web3Wallet.mySecKey".data(using: .utf8)!
 //암복호 알고리즘 EC 256비트
 let cryptoAlgo: SecKeyAlgorithm = .eciesEncryptionCofactorX963SHA256AESGCM
 
-
 class MySecureEnclave {
     init (){}
     static var shared = MySecureEnclave()
@@ -20,37 +19,17 @@ class MySecureEnclave {
     /**개인키 생성 및 저장 함수
      */
     func createSecKey() throws {
+        
         print("개인키 생성 및 저장 시작...")
         var error: Unmanaged<CFError>?
-        
-        //액세스 컨트롤러 패스코드
-        let accessPasscode = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
-                                                     kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
-                                                     [.devicePasscode, .privateKeyUsage],
-                                                     nil)!
-        //액세스 컨트롤러 바이오
-        let accessBio = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
-                                                     kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
-                                                     [.userPresence, .privateKeyUsage],
-                                                     nil)!
-        
-        let isBio = UserDefaults.standard.value(forKey: "isBio") as! Bool
-        var access : SecAccessControl!
-        if isBio {
-            access = accessBio
-        } else {
-            access = accessPasscode
-        }
         
         //개인키 생성
         let attributes : [String: Any] = [
             kSecAttrKeyType as String: kSecAttrKeyTypeEC ,
             kSecAttrKeySizeInBits as String: 256,
-            kSecAttrTokenID as String: kSecAttrTokenIDSecureEnclave,
             kSecPrivateKeyAttrs as String : [
                 kSecAttrIsPermanent as String: true,
-                kSecAttrApplicationTag as String: tag,
-                kSecAttrAccessControl as String: access ] ]
+                kSecAttrApplicationTag as String: tag ]]
         guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {
             throw error!.takeRetainedValue() as Error
         }
@@ -122,9 +101,10 @@ class MySecureEnclave {
     func decrypt(privateKey: SecKey, cipherText: CFData) throws -> CFData {
         //개인키와 복호화알고리즘 간 호환성 검사
         print ("복호화 시작...")
+        //
         guard SecKeyIsAlgorithmSupported(privateKey, .decrypt, cryptoAlgo) else { throw SecureKeyError.encryptionCompatibility}
         
-//        let loaded = UserDefaults.standard.value(forKey: "testing.cipher") as! CFData
+        //        let loaded = UserDefaults.standard.value(forKey: "testing.cipher") as! CFData
         let loaded = cipherText
         
         var error: Unmanaged<CFError>?
@@ -145,5 +125,6 @@ class MySecureEnclave {
         case decryptionCompatibility
         case decryptionSize
         case decryption
+        case bioInvalid
     }
 }
