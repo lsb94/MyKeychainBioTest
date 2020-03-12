@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		EC96EEE42418E3EB00D1A853 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96EEE32418E3EB00D1A853 /* AppDelegate.swift */; };
-		EC96EEE62418E3EB00D1A853 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96EEE52418E3EB00D1A853 /* SceneDelegate.swift */; };
 		EC96EEE82418E3EB00D1A853 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96EEE72418E3EB00D1A853 /* ViewController.swift */; };
 		EC96EEEB2418E3EB00D1A853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC96EEE92418E3EB00D1A853 /* Main.storyboard */; };
 		EC96EEED2418E3ED00D1A853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC96EEEC2418E3ED00D1A853 /* Assets.xcassets */; };
 		EC96EEF02418E3ED00D1A853 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC96EEEE2418E3ED00D1A853 /* LaunchScreen.storyboard */; };
-		EC96EEF82419ABF700D1A853 /* MyBioAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96EEF72419ABF700D1A853 /* MyBioAuth.swift */; };
+		EC96EEF82419ABF700D1A853 /* MySecureEnclave.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96EEF72419ABF700D1A853 /* MySecureEnclave.swift */; };
+		EC96EEFA2419AC7400D1A853 /* MyBioAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96EEF92419AC7400D1A853 /* MyBioAuthentication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC96EEE02418E3EB00D1A853 /* MyKeychainBioTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyKeychainBioTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC96EEE32418E3EB00D1A853 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC96EEE52418E3EB00D1A853 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EC96EEE72418E3EB00D1A853 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC96EEEA2418E3EB00D1A853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC96EEEC2418E3ED00D1A853 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC96EEEF2418E3ED00D1A853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC96EEF12418E3ED00D1A853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC96EEF72419ABF700D1A853 /* MyBioAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBioAuth.swift; sourceTree = "<group>"; };
+		EC96EEF72419ABF700D1A853 /* MySecureEnclave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecureEnclave.swift; sourceTree = "<group>"; };
+		EC96EEF92419AC7400D1A853 /* MyBioAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBioAuthentication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,13 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				EC96EEE32418E3EB00D1A853 /* AppDelegate.swift */,
-				EC96EEE52418E3EB00D1A853 /* SceneDelegate.swift */,
 				EC96EEE72418E3EB00D1A853 /* ViewController.swift */,
 				EC96EEE92418E3EB00D1A853 /* Main.storyboard */,
 				EC96EEEC2418E3ED00D1A853 /* Assets.xcassets */,
 				EC96EEEE2418E3ED00D1A853 /* LaunchScreen.storyboard */,
 				EC96EEF12418E3ED00D1A853 /* Info.plist */,
-				EC96EEF72419ABF700D1A853 /* MyBioAuth.swift */,
+				EC96EEF72419ABF700D1A853 /* MySecureEnclave.swift */,
+				EC96EEF92419AC7400D1A853 /* MyBioAuthentication.swift */,
 			);
 			path = MyKeychainBioTest;
 			sourceTree = "<group>";
@@ -141,10 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC96EEF82419ABF700D1A853 /* MyBioAuth.swift in Sources */,
+				EC96EEFA2419AC7400D1A853 /* MyBioAuthentication.swift in Sources */,
+				EC96EEF82419ABF700D1A853 /* MySecureEnclave.swift in Sources */,
 				EC96EEE82418E3EB00D1A853 /* ViewController.swift in Sources */,
 				EC96EEE42418E3EB00D1A853 /* AppDelegate.swift in Sources */,
-				EC96EEE62418E3EB00D1A853 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,13 +289,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C7YYJHX9GB;
 				INFOPLIST_FILE = MyKeychainBioTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.coinplug.davelee.MyKeychainBioTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinplug.davelee.MyWeb3TokenWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -307,13 +308,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C7YYJHX9GB;
 				INFOPLIST_FILE = MyKeychainBioTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.coinplug.davelee.MyKeychainBioTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinplug.davelee.MyWeb3TokenWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

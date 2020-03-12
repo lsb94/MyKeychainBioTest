@@ -23,11 +23,24 @@ class MySecureEnclave {
         print("개인키 생성 및 저장 시작...")
         var error: Unmanaged<CFError>?
         
-        //액세스 컨트롤러
-        let access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
+        //액세스 컨트롤러 패스코드
+        let accessPasscode = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
+                                                     kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
+                                                     [.devicePasscode, .privateKeyUsage],
+                                                     nil)!
+        //액세스 컨트롤러 바이오
+        let accessBio = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
                                                      kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
                                                      [.userPresence, .privateKeyUsage],
                                                      nil)!
+        
+        let isBio = UserDefaults.standard.value(forKey: "isBio") as! Bool
+        var access : SecAccessControl!
+        if isBio {
+            access = accessBio
+        } else {
+            access = accessPasscode
+        }
         
         //개인키 생성
         let attributes : [String: Any] = [
@@ -75,10 +88,10 @@ class MySecureEnclave {
     }
     
     /**비밀키와 평문을 받아
-     암호화 하여
-     암호문을 유저디폴트에 저장
+     암호화 하여 암호문을 유저디폴트에 저장하고
+     암호문을 반환
      */
-    func encrypt(privateKey: SecKey, target: Data) throws {
+    func encrypt(privateKey: SecKey, target: Data) throws -> CFData {
         print("암호화 시작...")
         //공개키 추출
         guard let publickey = SecKeyCopyPublicKey(privateKey) else{throw SecureKeyError.publicKeyDeriveError}
@@ -99,18 +112,20 @@ class MySecureEnclave {
             throw error!.takeRetainedValue() as Error }
         UserDefaults.standard.set(cipherText, forKey: "testing.cipher")
         print("암호화 완료")
+        return cipherText
     }
     
     /**비밀키를 받아
      복호화를 하여
      평문을 반환
      */
-    func decrypt(privateKey: SecKey) throws -> CFData {
+    func decrypt(privateKey: SecKey, cipherText: CFData) throws -> CFData {
         //개인키와 복호화알고리즘 간 호환성 검사
         print ("복호화 시작...")
         guard SecKeyIsAlgorithmSupported(privateKey, .decrypt, cryptoAlgo) else { throw SecureKeyError.encryptionCompatibility}
         
-        let loaded = UserDefaults.standard.value(forKey: "testing.cipher") as! CFData
+//        let loaded = UserDefaults.standard.value(forKey: "testing.cipher") as! CFData
+        let loaded = cipherText
         
         var error: Unmanaged<CFError>?
         guard let plainText = SecKeyCreateDecryptedData(privateKey, cryptoAlgo, loaded, &error) else{
